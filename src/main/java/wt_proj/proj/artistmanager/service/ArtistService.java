@@ -16,15 +16,18 @@ public class ArtistService {
     private final ArtistRepo artistRepo;
 
     @Autowired
-    public ArtistService(ArtistRepo artistRepo) {
+    public ArtistService(ArtistRepo artistRepo)
+    {
         this.artistRepo = artistRepo;
     }
 
-    public Artist addArtist(Artist artist) {
+    public Artist addArtist(Artist artist)
+    {
         return artistRepo.save(artist);
     }
 
-    public List<Artist> findAllArtists() {
+    public List<Artist> findAllArtists()
+    {
         return artistRepo.findAll();
     }
 
@@ -37,7 +40,8 @@ public class ArtistService {
                 .orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found"));
     }
 
-    public void deleteArtist(Long id){
+    public void deleteArtist(Long id)
+    {
         artistRepo.deleteArtistById(id);
     }
 }

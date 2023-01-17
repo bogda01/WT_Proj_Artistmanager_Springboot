@@ -2,12 +2,13 @@ package wt_proj.proj.artistmanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Artist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false, updatable = false,unique = true)
+    @Column(name = "id",nullable = false)
     private Long id;
 
     @Column(name = "name")
@@ -22,6 +23,10 @@ public class Artist implements Serializable {
         this.name = name;
         this.genre = genre;
     }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "artist",cascade = CascadeType.ALL)
+//    @JoinColumn(name = "songId")
+    private List<Song> songs;
 
     public Long getId() {
         return id;
